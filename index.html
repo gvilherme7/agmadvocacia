@@ -1,66 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AGM Advocacia</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AGM Advocacia</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <div id="overlay"></div>
+    <div id="overlay"></div>
 
-  <header>
-    <div class="header-logo">
-        <img src="images/LOGO FOOTER.svg" alt="Logo AGM Advocacia">
-    </div>
-  </header>
+    <header>
+        <div class="header-logo">
+            <img src="images/LOGO FOOTER.svg" alt="Logo AGM Advocacia">
+        </div>
+    </header>
 
-  <main>
-    <div class="card">
-      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-      <div class="card-content">
-        <h2 class="card-title">Direito Civil</h2>
-      </div>
-    </div>
+    <main>
+        <div class="card">
+            <div class="card-bg" style="background-image: url('images/3.png');"></div>
+            <div class="card-content">
+                <h2 class="card-title">CONTATO</h2>
+            </div>
+        </div>
 
-    <div class="card">
-      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-      <div class="card-content">
-        <h2 class="card-title">Direito Empresarial</h2>
-      </div>
-    </div>
+        <div class="card">
+            <div class="card-bg" style="background-image: url('images/3.png');"></div>
+            <div class="card-content">
+                <h2 class="card-title">INSTAGRAM</h2>
+            </div>
+        </div>
 
-    <div class="card">
-      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1589829085548-6f7f9e204fa7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-      <div class="card-content">
-        <h2 class="card-title">Direito Trabalhista</h2>
-      </div>
-    </div>
+        <div class="card">
+            <div class="card-bg" style="background-image: url('images/3.png');"></div>
+            <div class="card-content">
+                <h2 class="card-title">LINKEDIN</h2>
+            </div>
+        </div>
 
-    <div class="card">
-      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1589829085727-0e5c5a0b7f3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-      <div class="card-content">
-        <h2 class="card-title">Direito de Família</h2>
-      </div>
-    </div>
-  </main>
+        <div class="card">
+            <div class="card-bg" style="background-image: url('images/3.png');"></div>
+            <div class="card-content">
+                <h2 class="card-title">E-MAIL</h2>
+            </div>
+        </div>
+    </main>
 
-  <footer>
-    &copy; 2025 AGM Advocacia. Todos os direitos reservados.
-    <div class="footer-logo">
-        <img src="images/LOGO FOOTER.svg" alt="Logo do Escritório">
-    </div>
-  </footer>
+    <footer>
+        <div class="footer-info">
+            <div class="oab-info">
+                <p>AGM Advocacia — OAB/SC 999.999</p>
+                <p>Atendimento com ética, excelência e compromisso</p>
+            </div>
+            <div class="footer-logo">
+                <img src="images/LOGO FOOTER.svg" alt="Logo AGM Advocacia">
+            </div>
+            <div class="dev-info">
+                <p>Desenvolvido por <a href="https://www.linkedin.com/in/guilherme-mendes-de-oliveira-153b53206/" target="_blank">Guilherme M. de Oliveira</a></p>
+                <p><a href="https://github.com/gvilherme7" target="_blank">@gvilherme7</a> • 2025</p>
+            </div>
+        </div>
+    </footer>
 
-  <script>
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        document.getElementById('overlay').style.opacity = '0.5';
-      });
-      card.addEventListener('mouseleave', () => {
-        document.getElementById('overlay').style.opacity = '0';
-      });
-    });
-  </script>
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                document.getElementById('overlay').style.opacity = '0.5';
+            });
+            card.addEventListener('mouseleave', () => {
+                document.getElementById('overlay').style.opacity = '0';
+            });
+        });
+    </script>
 </body>
+
 </html>

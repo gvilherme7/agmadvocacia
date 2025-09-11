@@ -181,22 +181,50 @@ main {
   text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
-/* Rodapé discreto */
+/* --- Novo estilo para o rodapé --- */
+
 footer {
-  padding: 1.5rem 0;
-  text-align: center;
+  padding: 2rem 0 1rem;
   background-color: rgba(38, 39, 39, 0.3);
   color: var(--cor-texto-claro);
   font-family: 'Nourd', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   position: relative;
   z-index: 10;
+  text-align: center;
 }
 
-@media (max-width: 768px) {
-  header h1 { font-size: 1.4rem; }
-  .card { width: 90%; height: 300px; }
-  .card-title { font-size: 1.7rem; }
+.footer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 80%;
+  margin: 0 auto 1.5rem;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.oab-info p,
+.dev-info p {
+  margin: 0.2rem 0;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.oab-info p:hover,
+.dev-info p:hover {
+  opacity: 1;
+}
+
+.dev-info a {
+  color: var(--cor-texto-claro);
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
+.dev-info a:hover {
+  opacity: 1;
 }
 
 .footer-logo {
@@ -205,14 +233,26 @@ footer {
 }
 
 .footer-logo img {
-  height: 70px; /* Ajuste conforme necessário */
+  height: 70px;
   opacity: 0.9;
-  transition: opacity 0.3s ease, transform 0.3s ease;display: inline-block;
-  fill: #f5f3f2; /* Cor clara do seu tema */
-  stroke: #f5f3f2; /* Se houver traços */
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .footer-logo img:hover {
   opacity: 1;
   transform: scale(1.05);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .footer-info {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+  }
+
+  .oab-info p,
+  .dev-info p {
+    font-size: 0.8rem;
+  }
 }
