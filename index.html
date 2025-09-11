@@ -4,9 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Escritório de Advocacia</title>
-  <!-- Importando Champagne & Limousines e Nunito (substituta de Nourd) -->
-  <link href="https://fonts.googleapis.com/css2?family=Champagne+Limousines&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
+    /* ===== DECLARAÇÃO DAS FONTES LOCAIS (.ttf) ===== */
+    @font-face {
+      font-family: 'ChampagneAndLimousines';
+      src: url('fonts/Champagne & Limousines.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'ChampagneAndLimousines';
+      src: url('fonts/Champagne & Limousines Bold.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'ChampagneAndLimousines';
+      src: url('fonts/Champagne & Limousines Italic.ttf') format('truetype');
+      font-weight: normal;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'ChampagneAndLimousines';
+      src: url('fonts/Champagne & Limousines Bold Italic.ttf') format('truetype');
+      font-weight: bold;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Nourd';
+      src: url('fonts/nourd_regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Nourd';
+      src: url('fonts/nourd_medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Nourd';
+      src: url('fonts/nourd_bold.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ===== VARIÁVEIS DE CORES ===== */
     :root {
       --cor-fundo-escuro: #1b2634;
       --cor-texto-escuro: #262727;
@@ -21,7 +77,7 @@
     }
 
     body {
-      font-family: 'Nunito', sans-serif; /* Fonte secundária (substituta de Nourd) */
+      font-family: 'Nourd', sans-serif; /* Fonte secundária */
       background-color: var(--cor-fundo-escuro);
       color: var(--cor-texto-claro);
       overflow-x: hidden;
@@ -54,16 +110,16 @@
     }
 
     header h1 {
-      font-family: 'Champagne Limousines', serif; /* Fonte principal */
+      font-family: 'ChampagneAndLimousines', serif;
       font-size: 1.8rem;
-      font-weight: normal; /* Essa fonte é elegante sem precisar de negrito */
+      font-weight: normal;
       letter-spacing: 1px;
       color: var(--cor-texto-claro);
     }
 
     /* Conteúdo principal */
     main {
-      margin-top: 80px; /* espaço para o header fixo */
+      margin-top: 80px;
       padding: 2rem 0;
       display: flex;
       flex-direction: column;
@@ -71,7 +127,7 @@
     }
 
     .card {
-      width: 80%; /* 4/5 do espaço */
+      width: 80%;
       height: 400px;
       margin: 2rem 0;
       position: relative;
@@ -116,7 +172,7 @@
     }
 
     .card-title {
-      font-family: 'Champagne Limousines', serif; /* Fonte principal para títulos */
+      font-family: 'ChampagneAndLimousines', serif;
       font-size: 2.2rem;
       font-weight: normal;
       letter-spacing: 1.5px;
@@ -130,26 +186,16 @@
       text-align: center;
       background-color: rgba(38, 39, 39, 0.3);
       color: var(--cor-texto-claro);
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Nourd', sans-serif;
       font-size: 0.9rem;
       position: relative;
       z-index: 10;
     }
 
-    /* Responsividade */
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.4rem;
-      }
-
-      .card {
-        width: 90%;
-        height: 300px;
-      }
-
-      .card-title {
-        font-size: 1.7rem;
-      }
+      header h1 { font-size: 1.4rem; }
+      .card { width: 90%; height: 300px; }
+      .card-title { font-size: 1.7rem; }
     }
   </style>
 </head>
@@ -199,7 +245,6 @@
       card.addEventListener('mouseenter', () => {
         document.getElementById('overlay').style.opacity = '0.5';
       });
-
       card.addEventListener('mouseleave', () => {
         document.getElementById('overlay').style.opacity = '0';
       });
