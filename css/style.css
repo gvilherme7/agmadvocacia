@@ -1,7 +1,7 @@
 /* ===== DECLARAÇÃO DAS FONTES LOCAIS (.ttf) ===== */
 @font-face {
   font-family: 'ChampagneAndLimousines';
-  src: url('fonts/Champagne & Limousines.ttf') format('truetype');
+  src: url('../fonts/Champagne & Limousines.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'ChampagneAndLimousines';
-  src: url('fonts/Champagne & Limousines Bold.ttf') format('truetype');
+  src: url('../fonts/Champagne & Limousines Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -17,7 +17,7 @@
 
 @font-face {
   font-family: 'ChampagneAndLimousines';
-  src: url('fonts/Champagne & Limousines Italic.ttf') format('truetype');
+  src: url('../fonts/Champagne & Limousines Italic.ttf') format('truetype');
   font-weight: normal;
   font-style: italic;
   font-display: swap;
@@ -25,7 +25,7 @@
 
 @font-face {
   font-family: 'ChampagneAndLimousines';
-  src: url('fonts/Champagne & Limousines Bold Italic.ttf') format('truetype');
+  src: url('../fonts/Champagne & Limousines Bold Italic.ttf') format('truetype');
   font-weight: bold;
   font-style: italic;
   font-display: swap;
@@ -33,7 +33,7 @@
 
 @font-face {
   font-family: 'Nourd';
-  src: url('fonts/nourd_regular.ttf') format('truetype');
+  src: url('../fonts/nourd_regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -41,7 +41,7 @@
 
 @font-face {
   font-family: 'Nourd';
-  src: url('fonts/nourd_medium.ttf') format('truetype');
+  src: url('../fonts/nourd_medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -49,7 +49,7 @@
 
 @font-face {
   font-family: 'Nourd';
-  src: url('fonts/nourd_bold.ttf') format('truetype');
+  src: url('../fonts/nourd_bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -70,11 +70,18 @@
 }
 
 body {
-  font-family: 'Nourd', sans-serif; /* Fonte secundária */
-  background-color: var(--cor-fundo-escuro);
+  font-family: 'Nourd', sans-serif;
+  background-color: #1b2634; /* fallback */
+  background-image: linear-gradient(rgba(27, 38, 52, 0.85), rgba(27, 38, 52, 0.85)), url('../images/symbol\ 1.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--cor-texto-claro);
   overflow-x: hidden;
   position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 /* Overlay de ofuscamento */
@@ -189,4 +196,22 @@ footer {
   header h1 { font-size: 1.4rem; }
   .card { width: 90%; height: 300px; }
   .card-title { font-size: 1.7rem; }
+}
+
+.footer-logo {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.footer-logo img {
+  height: 70px; /* Ajuste conforme necessário */
+  opacity: 0.9;
+  transition: opacity 0.3s ease, transform 0.3s ease;display: inline-block;
+  fill: #f5f3f2; /* Cor clara do seu tema */
+  stroke: #f5f3f2; /* Se houver traços */
+}
+
+.footer-logo img:hover {
+  opacity: 1;
+  transform: scale(1.05);
 }
