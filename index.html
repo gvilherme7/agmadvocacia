@@ -6,43 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AGM Advocacia</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/logo2_vetor_branco.svg" type="image/svg+xml">
 </head>
 
 <body>
-    <div id="overlay"></div>
+    <!-- Fundo fixo simples -->
+    <div class="body-bg"></div>
 
     <header>
         <div class="header-logo">
-            <img src="images/LOGO FOOTER.svg" alt="Logo AGM Advocacia">
+            <img src="images/logo_footer.svg" alt="Logo AGM Advocacia">
         </div>
     </header>
 
     <main>
-        <div class="card">
-            <div class="card-bg" style="background-image: url('images/3.png');"></div>
-            <div class="card-content">
-                <h2 class="card-title">CONTATO</h2>
+        <div class="card-container">
+            <!-- Card 1 -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-bg" style="background-image: url('images/4.png');"></div>
+                <div class="card-content">
+                    <h2 class="card-title">Contato</h2>
+                </div>
+                <div class="card-details">
+                    <p>Entre em contato conosco através do telefone (11) 99999-9999 ou pelo formulário em nosso site.
+                    </p>
+                    <p>Atendemos de segunda a sexta, das 9h às 18h.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-bg" style="background-image: url('images/3.png');"></div>
-            <div class="card-content">
-                <h2 class="card-title">INSTAGRAM</h2>
+            <!-- Card 2 -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-bg" style="background-image: url('images/3.png');"></div>
+                <div class="card-content">
+                    <h2 class="card-title">Instagram</h2>
+                </div>
+                <div class="card-details">
+                    <p>Siga nosso Instagram <strong>@agmadvocacia</strong> para dicas jurídicas, novidades e conteúdos
+                        exclusivos.</p>
+                    <p>Estamos sempre compartilhando informações úteis para nossos clientes.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-bg" style="background-image: url('images/3.png');"></div>
-            <div class="card-content">
-                <h2 class="card-title">LINKEDIN</h2>
+            <!-- Card 3 -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-bg" style="background-image: url('images/3.png');"></div>
+                <div class="card-content">
+                    <h2 class="card-title">Linkedin</h2>
+                </div>
+                <div class="card-details">
+                    <p>Conecte-se conosco no LinkedIn para acompanhar artigos técnicos, publicações e networking
+                        jurídico.</p>
+                    <p>Compartilhamos cases, análises e posicionamentos sobre o mercado jurídico.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-bg" style="background-image: url('images/3.png');"></div>
-            <div class="card-content">
-                <h2 class="card-title">E-MAIL</h2>
+            <!-- Card 4 -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-bg" style="background-image: url('images/3.png');"></div>
+                <div class="card-content">
+                    <h2 class="card-title">E-mail</h2>
+                </div>
+                <div class="card-details">
+                    <p>Envie sua consulta para <strong>contato@agmadvocacia.com.br</strong></p>
+                    <p>Responderemos em até 24 horas úteis. Para urgências, utilize o telefone.</p>
+                </div>
             </div>
         </div>
     </main>
@@ -54,25 +81,17 @@
                 <p>Atendimento com ética, excelência e compromisso</p>
             </div>
             <div class="footer-logo">
-                <img src="images/LOGO FOOTER.svg" alt="Logo AGM Advocacia">
+                <img src="images/logo_footer.svg" alt="Logo AGM Advocacia">
             </div>
             <div class="dev-info">
-                <p>Desenvolvido por <a href="https://www.linkedin.com/in/guilherme-mendes-de-oliveira-153b53206/" target="_blank">Guilherme M. de Oliveira</a></p>
+                <p>Desenvolvido por <a href="https://www.linkedin.com/in/guilherme-mendes-de-oliveira-153b53206/"
+                        target="_blank">Guilherme M. de Oliveira</a></p>
                 <p><a href="https://github.com/gvilherme7" target="_blank">@gvilherme7</a> • 2025</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                document.getElementById('overlay').style.opacity = '0.5';
-            });
-            card.addEventListener('mouseleave', () => {
-                document.getElementById('overlay').style.opacity = '0';
-            });
-        });
-    </script>
+    <script src="js/script.js" defer></script>
 </body>
 
 </html>

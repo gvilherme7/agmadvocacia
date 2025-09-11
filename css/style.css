@@ -1,7 +1,7 @@
 /* ===== DECLARAÇÃO DAS FONTES LOCAIS (.ttf) ===== */
 @font-face {
   font-family: 'ChampagneAndLimousines';
-  src: url('../fonts/Champagne & Limousines.ttf') format('truetype');
+  src: url('../fonts/champagne-limousines.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'ChampagneAndLimousines';
-  src: url('../fonts/Champagne & Limousines Bold.ttf') format('truetype');
+  src: url('../fonts/champagne-limousines-bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -17,7 +17,7 @@
 
 @font-face {
   font-family: 'ChampagneAndLimousines';
-  src: url('../fonts/Champagne & Limousines Italic.ttf') format('truetype');
+  src: url('../fonts/champagne-limousines-italic.ttf') format('truetype');
   font-weight: normal;
   font-style: italic;
   font-display: swap;
@@ -25,7 +25,7 @@
 
 @font-face {
   font-family: 'ChampagneAndLimousines';
-  src: url('../fonts/Champagne & Limousines Bold Italic.ttf') format('truetype');
+  src: url('../fonts/champagne-limousines-bold-italic.ttf') format('truetype');
   font-weight: bold;
   font-style: italic;
   font-display: swap;
@@ -71,43 +71,40 @@
 
 body {
   font-family: 'Nourd', sans-serif;
-  background-color: #1b2634; /* fallback */
-  background-image: linear-gradient(rgba(27, 38, 52, 0.85), rgba(27, 38, 52, 0.85)), url('../images/symbol\ 1.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  background-color: #1b2634;
   color: var(--cor-texto-claro);
   overflow-x: hidden;
   position: relative;
-  margin: 0;
-  padding: 0;
+  min-height: 100vh;
 }
 
-/* Overlay de ofuscamento */
-#overlay {
+/* Fundo fixo do corpo */
+/* Fundo fixo do corpo - TESTE TEMPORÁRIO */
+.body-bg {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--sombra-hover);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 99;
+  background-image: linear-gradient(rgba(27, 38, 52, 0.85), rgba(27, 38, 52, 0.85)), url('../images/symbol_1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
 }
 
+/* Cabeçalho */
 .header-logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px; /* Altura do header */
+  height: 100px;
   text-align: center;
+  background-color: rgba(38, 39, 39, 0.3);
 }
 
 .header-logo img {
-  height: 60px; /* Ajuste conforme necessário */
+  height: 80px;
   width: auto;
   opacity: 0.9;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -120,13 +117,24 @@ body {
 
 /* Conteúdo principal */
 main {
-  margin-top: 80px;
-  padding: 2rem 0;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Container dos Cards */
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+/* Estilo dos Cards */
 .card {
   width: 80%;
   height: 400px;
@@ -137,14 +145,15 @@ main {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: transparent;
 }
 
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  z-index: 101;
 }
 
+/* Imagem de fundo */
 .card-bg {
   width: 100%;
   height: 100%;
@@ -153,14 +162,25 @@ main {
   position: absolute;
   top: 0;
   left: 0;
-  filter: brightness(0.7);
-  transition: filter 0.3s ease;
 }
 
-.card:hover .card-bg {
-  filter: brightness(0.9);
+/* Escurecimento da imagem de fundo */
+.card-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease;
 }
 
+.card:hover .card-bg::before {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Conteúdo visível (título) */
 .card-content {
   position: absolute;
   bottom: 0;
@@ -181,10 +201,28 @@ main {
   text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
-/* --- Novo estilo para o rodapé --- */
+/* Detalhes expandidos */
+.card-details {
+  position: absolute;
+  bottom: -300px;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  background-color: rgba(27, 38, 52, 0.95);
+  color: var(--cor-texto-claro);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: bottom 0.6s ease;
+  z-index: 3;
+}
 
+.card.expanded .card-details {
+  bottom: 0;
+}
+
+/* Rodapé */
 footer {
-  padding: 2rem 0 1rem;
+  padding: 0.5rem 0;
   background-color: rgba(38, 39, 39, 0.3);
   color: var(--cor-texto-claro);
   font-family: 'Nourd', sans-serif;
@@ -199,7 +237,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   max-width: 80%;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1rem;
   padding: 0 1rem;
   flex-wrap: wrap;
   gap: 1rem;
@@ -227,13 +265,8 @@ footer {
   opacity: 1;
 }
 
-.footer-logo {
-  margin-top: 1rem;
-  text-align: center;
-}
-
 .footer-logo img {
-  height: 70px;
+  height: 50px;
   opacity: 0.9;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -245,12 +278,25 @@ footer {
 
 /* Responsivo */
 @media (max-width: 768px) {
+  .card {
+    width: 90%;
+    height: 350px;
+  }
+  
+  .card-details {
+    bottom: -250px;
+  }
+  
+  .card.expanded .card-details {
+    bottom: 0;
+  }
+  
   .footer-info {
     flex-direction: column;
     gap: 0.8rem;
     text-align: center;
   }
-
+  
   .oab-info p,
   .dev-info p {
     font-size: 0.8rem;
