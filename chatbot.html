@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGM Advocacia - Chatbot</title>
+    <style>
+        @font-face {
+            font-family: 'ChampagneAndLimousines';
+            src: url('fonts/champagne-limousines.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'ChampagneAndLimousines';
+            src: url('fonts/champagne-limousines-bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Nourd';
+            src: url('fonts/nourd_regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --cor-fundo-escuro: #1b2634;
+            --cor-texto-escuro: #262727;
+            --cor-texto-claro: #f5f3f2;
+            --cor-primaria: #4a90e2;
+            --sombra-hover: rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nourd', sans-serif;
+            background-color: #1b2634;
+            color: var(--cor-texto-claro);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .body-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(27, 38, 52, 0.85), rgba(27, 38, 52, 0.85)), url('images/symbol_1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            text-align: center;
+            background-color: rgba(38, 39, 39, 0.3);
+        }
+
+        .header-logo img {
+            height: 80px;
+            width: auto;
+            opacity: 0.9;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .header-logo img:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .chat-container {
+            background-color: rgba(27, 38, 52, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background-color: rgba(38, 39, 39, 0.5);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(245, 243, 242, 0.1);
+        }
+
+        .chat-header h1 {
+            font-family: 'ChampagneAndLimousines', serif;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .chat-header p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 15px;
+            border-radius: 18px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            background-color: rgba(74, 144, 226, 0.2);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            background-color: rgba(245, 243, 242, 0.1);
+            border: 1px solid rgba(245, 243, 242, 0.2);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .bot-avatar {
+            background-color: #4a90e2;
+        }
+
+        .user-avatar {
+            background-color: #50c878;
+        }
+
+        .message-content {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .chat-input {
+            padding: 20px;
+            background-color: rgba(38, 39, 39, 0.3);
+            border-top: 1px solid rgba(245, 243, 242, 0.1);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid rgba(245, 243, 242, 0.3);
+            border-radius: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--cor-texto-claro);
+            font-family: 'Nourd', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--cor-texto-claro);
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px rgba(245, 243, 242, 0.2);
+        }
+
+        .input-group button {
+            padding: 15px 25px;
+            background-color: var(--cor-primaria);
+            color: var(--cor-texto-claro);
+            border: none;
+            border-radius: 30px;
+            font-family: 'ChampagneAndLimousines', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .input-group button:hover {
+            background-color: #3a7bc8;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 20px;
+            background-color: rgba(38, 39, 39, 0.3);
+            color: var(--cor-texto-claro);
+            font-family: 'Nourd', sans-serif;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .oab-info p,
+        .dev-info p {
+            margin: 0.2rem 0;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .oab-info p:hover,
+        .dev-info p:hover {
+            opacity: 1;
+        }
+
+        .dev-info a {
+            color: var(--cor-texto-claro);
+            text-decoration: underline;
+            opacity: 0.9;
+        }
+
+        .dev-info a:hover {
+            opacity: 1;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            opacity: 0.9;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-logo img:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .footer-info {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+            
+            .chat-container {
+                height: 60vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="body-bg"></div>
+    
+    <header>
+        <div class="header-logo">
+            <img src="images/logo_footer.svg" alt="Logo AGM Advocacia">
+        </div>
+    </header>
+    
+    <main>
+        <div class="chat-container">
+            <div class="chat-header">
+                <h1>Assistente Virtual</h1>
+                <p>Como posso ajudar você hoje?</p>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-header">
+                        <div class="avatar bot-avatar">A</div>
+                        <strong>Assistente</strong>
+                    </div>
+                    <div class="message-content">
+                        Olá! Sou o assistente virtual da AGM Advocacia. Antes de prosseguirmos, é importante te avisar que vou solicitar alguns dados pessoais para que nossa equipe possa entrar em contato e melhor te atender. Todos os dados fornecidos serão tratados com total confidencialidade e em conformidade com a LGPD. Vamos começar?
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input">
+                <div class="input-group">
+                    <input type="text" id="userInput" placeholder="Digite sua resposta..." onkeypress="handleKeyPress(event)">
+                    <button onclick="sendMessage()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-info">
+            <div class="oab-info">
+                <p>AGM Advocacia — OAB/SC 70.418</p>
+                <p>Atendimento com ética, excelência e compromisso</p>
+            </div>
+            <div class="footer-logo">
+                <img src="images/logo_footer.svg" alt="Logo AGM Advocacia">
+            </div>
+            <div class="dev-info">
+                <p>Desenvolvido por <a href="https://www.linkedin.com/in/guilherme-mendes-de-oliveira-153b53206/  " target="_blank">Guilherme M. de Oliveira</a></p>
+                <p><a href="https://github.com/gvilherme7  " target="_blank">@gvilherme7</a> • 2025</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        
+        let conversationStage = 0;
+        let userData = {};
+        let isConfirmationStage = false;
+        
+        const questions = [
+            "Qual é o seu nome completo?",
+            "Qual é o seu e-mail?",
+            "Qual é o seu telefone?",
+            "Você é uma empresa ou cliente individual?",
+            "Qual é a sua mensagem ou dúvida?"
+        ];
+        
+        const botResponses = [
+            "Obrigado, {nome}! Agora preciso do seu e-mail para contato.",
+            "Perfeito! Agora me informe o seu telefone.",
+            "Ótimo! Preciso saber que tipo de cliente você é.",
+            "Entendi. Agora, preciso que descreva sua necessidade.",
+            "Obrigado por todas as informações! Vou resumir os dados coletados."
+        ];
+        
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+            
+            // Verificar se estamos na etapa de confirmação
+            if (isConfirmationStage) {
+                // Adicionar mensagem do usuário antes de processar
+                addMessage(message, 'user');
+                userInput.value = '';
+                
+                handleConfirmation(message);
+                return;
+            }
+            
+            if (conversationStage >= questions.length) return;
+            
+            // Adicionar mensagem do usuário
+            addMessage(message, 'user');
+            userInput.value = '';
+            
+            // Processar resposta do bot
+            setTimeout(() => {
+                processUserResponse(message);
+            }, 1000);
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function addMessage(content, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            const avatar = sender === 'bot' ? 'A' : 'V';
+            const senderName = sender === 'bot' ? 'Assistente' : 'Você';
+            const avatarClass = sender === 'bot' ? 'bot-avatar' : 'user-avatar';
+            
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <div class="avatar ${avatarClass}">${avatar}</div>
+                    <strong>${senderName}</strong>
+                </div>
+                <div class="message-content">${content}</div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function processUserResponse(response) {
+            // Armazenar a resposta do usuário
+            userData[Object.keys(userData).length] = response;
+            
+            switch(conversationStage) {
+                case 0:
+                    userData.nome = response;
+                    addMessage(botResponses[0].replace('{nome}', response), 'bot');
+                    break;
+                case 1:
+                    userData.email = response;
+                    addMessage(botResponses[1], 'bot');
+                    break;
+                case 2:
+                    userData.telefone = response;
+                    addMessage(botResponses[2], 'bot');
+                    break;
+                case 3:
+                    userData.tipo = response;
+                    addMessage(botResponses[3], 'bot');
+                    break;
+                case 4:
+                    userData.mensagem = response;
+                    addMessage(botResponses[4], 'bot');
+                    
+                    // Mostrar resumo dos dados
+                    setTimeout(() => {
+                        showDataSummary();
+                    }, 1500);
+                    return;
+            }
+            
+            conversationStage++;
+            
+            if (conversationStage < questions.length) {
+                setTimeout(() => {
+                    addMessage(questions[conversationStage], 'bot');
+                }, 1500);
+            }
+        }
+        
+        function showDataSummary() {
+            const summary = `
+                <strong>Resumo dos dados coletados:</strong><br>
+                Nome: ${userData.nome}<br>
+                E-mail: ${userData.email}<br>
+                Telefone: ${userData.telefone}<br>
+                Tipo: ${userData.tipo}<br>
+                Mensagem: ${userData.mensagem}<br><br>
+                Está tudo correto? (Sim/Não)
+            `;
+            
+            addMessage(summary, 'bot');
+            isConfirmationStage = true; // Etapa de confirmação
+        }
+        
+        function handleConfirmation(response) {
+            const resposta = response.toLowerCase().trim();
+            
+            // Verifica se a resposta é válida
+            if (resposta === 'sim' || resposta === 's' || resposta === 'sim, está correto' || resposta === 'ok' || resposta === 'confirmar') {
+                // Enviar os dados
+                sendUserDataToServer();
+                
+                // Mensagem de confirmação no chat
+                addMessage("Sua solicitação foi enviada com sucesso! Em breve entraremos em contato.", 'bot');
+                
+                // Desabilitar entrada após envio
+                userInput.disabled = true;
+                userInput.placeholder = "Conversa encerrada";
+                
+                // Mostrar mensagem final
+                setTimeout(() => {
+                    addMessage("Obrigado por entrar em contato conosco!", 'bot');
+                }, 2000);
+            } else if (resposta === 'não' || resposta === 'nao' || resposta === 'n' || resposta === 'não, está incorreto' || resposta === 'corrigir' || resposta === 'reiniciar') {
+                // Reiniciar o formulário
+                addMessage("Vamos recomeçar então. Por favor, informe novamente seus dados.", 'bot');
+                
+                // Resetar variáveis
+                conversationStage = 0;
+                userData = {};
+                isConfirmationStage = false;
+                
+                // Iniciar novamente
+                setTimeout(() => {
+                    addMessage(questions[0], 'bot');
+                }, 1500);
+            } else {
+                // Respostas inválidas
+                addMessage("Por favor, responda com 'Sim' ou 'Não'.", 'bot');
+                setTimeout(() => {
+                    addMessage("Está tudo correto? (Sim/Não)", 'bot');
+                }, 1000);
+            }
+        }
+        
+        function sendUserDataToServer() {
+            // Simulação de envio de dados para servidor
+            console.log("Dados enviados:", userData);
+        }
+        
+        // Iniciar conversa
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                addMessage(questions[0], 'bot');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

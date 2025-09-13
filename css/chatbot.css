@@ -1,0 +1,200 @@
+/* css/chatbot.css */
+
+:root {
+    --cor-fundo-escuro: #1b2634;
+    --cor-texto-escuro: #262727;
+    --cor-texto-claro: #f5f3f2;
+    --cor-destaque: #00a884;
+    --cor-destaque-hover: #009670;
+    --sombra: rgba(0, 0, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-claro);
+    /* Altura total da viewport */
+    min-height: 100vh; /* Corrigido: 100 vh -> 100vh */
+    /* Remove padding padrão */
+    padding: 0;
+    /* Usa flexbox para centralizar o chat */
+    display: flex;
+    justify-content: center;
+    /* Margem superior de 10% da viewport height */
+    padding-top: 10vh; /* Corrigido: 10 vh -> 10vh */
+    /* margem inferior de 5% da viewport height */
+    padding-bottom: 5vh; /* Corrigido: 5 vh -> 5vh */
+}
+
+/* O container do chat ocupa o espaço restante */
+.chat-container {
+    /* Largura: 100% - 10% (esquerda) - 10% (direita) = 80% */
+    width: 80%;
+    /* Altura: 100% da altura restante entre padding-top e padding-bottom */
+    height: 100%;
+    max-width: 500px; /* Corrigido: 500 px -> 500px */
+    background-color: #ffffff;
+    border-radius: 10px; /* Corrigido: 10 px -> 10px */
+    box-shadow: 0 5px 15px var(--sombra); /* Corrigido: 0 5 px -> 0 5px */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header { /* Corrigido: chatte-header -> chat-header */
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-claro);
+    padding: 15px 20px; /* Corrigido: 15 px 20 px -> 15px 20px */
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Corrigido: 15 px -> 15px */
+    border-bottom: 1px solid #e0e0e0; /* Corrigido: 1 px -> 1px */
+    border-radius: 10px 10px 0 0; /* Corrigido: 10 px -> 10px */
+}
+
+.chat-avatar { /* Corrigido: чат-avato -> chat-avatar */
+    width: 50px; /* Corrigido: 50 px -> 50px */
+    height: 50px; /* Corrigido: 50 px -> 50px */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px; /* Corrigido: 10 px -> 10px */
+    background-color: #e4e6eb;
+}
+
+.chat-header h1 { /* Corrigido: чат-header -> chat-header */
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.chat-header p { /* Corrigido: чат-header -> chat-header */
+    font-size: 0.9em;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.chat-messages { /* Corrigido: чат-messages -> chat-messages */
+    flex-grow: 1;
+    padding: 20px; /* Corrigido: 20 px -> 20px */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Corrigido: 15 px -> 15px */
+    background-color: #f0f2f5; /* Corrigido: #f0f2 f5 -> #f0f2f5 */
+}
+
+.message {
+    max-width: 80%;
+    padding: 10px 15px; /* Corrigido: 10 px 15 px -> 10px 15px */
+    border-radius: 10px; /* Corrigido: 10 px -> 10px */
+    position: relative;
+    animation: fadeIn 0.3s ease-out; /* Corrigido: anim -> animation */
+    word-wrap: break-word; /* Corrigido: break word -> break-word */
+    line-height: 1.4;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); } /* Corrigido: 10 px -> 10px */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bot-message { /* Corrigido: bot-me -> bot-message (para corresponder ao JS) */
+    background-color: #ffffff;
+    align-self: flex-start;
+    border: 1px solid #e0e0e0; /* Corrigido: 1 px -> 1px */
+    color: var(--cor-texto-escuro);
+}
+
+.user-message { /* Corrigido: user-me -> user-message (para corresponder ao JS) */
+    background-color: var(--cor-destaque);
+    color: white;
+    align-self: flex-end;
+}
+
+.chat-input-area { /* Corrigido: чат-input-area -> chat-input-area */
+    padding: 15px; /* Corrigido: 15 px -> 15px */
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0; /* Corrigido: 1 px -> 1px */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Corrigido: 10 px -> 10px */
+    border-radius: 0 0 10px 10px; /* Corrigido: 10 px -> 10px */
+}
+
+.quick-replies { /* Corrigido: quick-replies (faltava .) */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Corrigido: 8 px -> 8px */
+}
+
+.quick-reply-btn { /* Corrigido: quick-reply-btn (faltava .) */
+    background-color: #e4e6eb;
+    color: var(--cor-texto-escuro);
+    border: none;
+    border-radius: 20px; /* Corrigido: 20 px -> 20px */
+    padding: 8px 15px; /* Corrigido: 8 px 15 px -> 8px 15px */
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.quick-reply-btn:hover { /* Corrigido: quick-reply-btn:hover (faltava .) */
+    background-color: #d8dadf; /* Corrigido: #d8 dadf -> #d8dadf */
+}
+
+.input-container { /* Corrigido: input-container (faltava .) */
+    display: flex;
+    gap: 10px; /* Corrigido: 10 px -> 10px */
+}
+
+#userInput {
+    flex-grow: 1;
+    padding: 12px 15px; /* Corrigido: 12 px 15 px -> 12px 15px */
+    border: 1px solid #e0e0e0; /* Corrigido: 1 px -> 1px */
+    border-radius: 20px; /* Corrigido: 20 px -> 20px */
+    font-size: 1em;
+    outline: none;
+}
+
+#userInput:focus {
+    border-color: var(--cor-destaque);
+}
+
+#sendButton { /* Corrigido: # sendButton -> #sendButton */
+    background-color: var(--cor-destaque);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px; /* Corrigido: 45 px -> 45px */
+    height: 45px; /* Corrigido: 45 px -> 45px */
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sendButton:hover {
+    background-color: var(--cor-destaque-hover);
+}
+
+/* Media queries para responsividade em telas menores */
+@media (max-width: 768px) { /* Corrigido: 768 px -> 768px */
+    body {
+        /* Em telas menores, reduzimos um pouco as margens verticais */
+        padding-top: 5vh;
+        padding-bottom: 2vh;
+    }
+    .chat-container {
+        /* Em telas menores, aumentamos a largura para 90% */
+        width: 90%;
+        /* E ajustamos a altura */
+        height: 100%;
+    }
+}
