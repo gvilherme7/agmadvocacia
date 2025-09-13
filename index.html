@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <!-- Fundo fixo simples -->
     <div class="body-bg"></div>
 
     <header>
@@ -20,66 +19,37 @@
     </header>
 
     <main>
-        <!-- Card 1 - Contato com Formulário -->
         <div class="card" onclick="toggleCard(this)">
             <div class="card-bg" style="background-image: url('images/3.png');"></div>
             <div class="card-content">
                 <h2 class="card-title">Contato</h2>
             </div>
-            <!-- Conteúdo expandido -->
             <div class="card-expanded-content">
                 <div class="expanded-left">
-                    <div class="image-card" style="background-image: url('images/3.png');"></div>
+                    <div class="image-card" style="background-image: url('images/4.png');"></div>
                 </div>
                 <div class="expanded-right">
-                    <div class="contact-form-container">
-                        <form id="contactForm" class="contact-form">
-                            <h3 class="form-title">Envie sua mensagem</h3>
-
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" placeholder=" " required>
-                                <label for="name">Nome completo</label>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="email" id="email" name="email" placeholder=" " required>
-                                <label for="email">E-mail</label>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="tel" id="phone" name="phone" placeholder=" " required>
-                                <label for="phone">Telefone</label>
-                            </div>
-
-                            <div class="form-group">
-                                <select id="subject" name="subject" required>
-                                    <option value="" disabled selected>Selecione o assunto</option>
-                                    <option value="consulta">Consulta Jurídica</option>
-                                    <option value="orcamento">Orçamento</option>
-                                    <option value="urgencia">Caso Urgente</option>
-                                    <option value="outros">Outros Assuntos</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
-                                <label for="message">Mensagem</label>
-                            </div>
-
-                            <button type="submit" class="submit-btn">Enviar Mensagem</button>
-                        </form>
+                    <div class="child-card">
+                        <h3>Telefone</h3>
+                        <p>(11) 99999-9999</p>
+                    </div>
+                    <div class="child-card">
+                        <h3>Endereço</h3>
+                        <p>Rua Exemplo, 123 - São Paulo</p>
+                    </div>
+                    <div class="child-card">
+                        <h3>Horário</h3>
+                        <p>Segunda a Sexta, 9h-18h</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Card 2 -->
         <div class="card" onclick="toggleCard(this)">
             <div class="card-bg" style="background-image: url('images/3.png');"></div>
             <div class="card-content">
                 <h2 class="card-title">Sou empresa</h2>
             </div>
-            <!-- Conteúdo expandido -->
             <div class="card-expanded-content">
                 <div class="expanded-left">
                     <div class="image-card" style="background-image: url('images/business_front.png');"></div>
@@ -103,7 +73,6 @@
             <div class="card-content">
                 <h2 class="card-title">Sou cliente</h2>
             </div>
-            <!-- Conteúdo expandido -->
             <div class="card-expanded-content">
                 <div class="expanded-left">
                     <div class="image-card" style="background-image: url('images/business_card.png');"></div>
@@ -122,13 +91,11 @@
             </div>
         </div>
 
-        <!-- Card 3 -->
         <div class="card" onclick="toggleCard(this)">
             <div class="card-bg" style="background-image: url('images/3.png');"></div>
             <div class="card-content">
                 <h2 class="card-title">Linkedin</h2>
             </div>
-            <!-- Conteúdo expandido -->
             <div class="card-expanded-content">
                 <div class="expanded-left">
                     <div class="image-card" style="background-image: url('images/caneta.png');"></div>
@@ -146,13 +113,11 @@
             </div>
         </div>
 
-        <!-- Card 4 -->
         <div class="card" onclick="toggleCard(this)">
             <div class="card-bg" style="background-image: url('images/3.png');"></div>
             <div class="card-content">
                 <h2 class="card-title">E-mail</h2>
             </div>
-            <!-- Conteúdo expandido -->
             <div class="card-expanded-content">
                 <div class="expanded-left">
                     <div class="image-card" style="background-image: url('images/paper.png');"></div>
@@ -172,7 +137,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </main>
 
