@@ -1,147 +1,183 @@
-// js/chatobot.js
+const chatMessages = document.getElementById('chatMessages');
+const userInput = document.getElementById('userInput');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const chatMessages = document.getElementById('chatMessages');
-    const userInput = document.getElementById('userInput');
-    const sendButton = document.getElementById('sendButton');
-    const quickRepliesContainer = document.getElementById('quickReplies');
-    const inputArea = document.getElementById('inputArea');
+let conversationStage = 0;
+let userData = {};
+let isConfirmationStage = false;
 
-    // Verificação de elemento essenciais
-    if (!chatSections || !userInput || !sendButton || !quickRepliesContainer || !inputArea) {
-        console.error("um ou mais elemento necessários não foram encontrados no DOM.");
+const questions = [
+    "Qual é o seu nome completo?",
+    "Qual é o seu e-mail?",
+    "Qual é o seu telefone?",
+    "Você é uma empresa ou cliente individual?",
+    "Qual é a sua mensagem ou dúvida?"
+];
+
+const botResponses = [
+    "Obrigado, {nome}! Agora preciso do seu e-mail para contato.",
+    "Perfeito! Agora me informe o seu telefone.",
+    "Ótimo! Preciso saber que tipo de cliente você é.",
+    "Entendi. Agora, preciso que descreva sua necessidade.",
+    "Obrigado por todas as informações! Vou resumir os dados coletados."
+];
+
+function sendMessage() {
+    const message = userInput.value.trim();
+    if (!message) return;
+
+    // Verificar se estamos na etapa de confirmação
+    if (isConfirmationStage) {
+        // Adicionar mensagem do usuário antes de processar
+        addMessage(message, 'user');
+        userInput.value = '';
+
+        handleConfirmation(message);
         return;
     }
 
-    let currentStep = 0;
-    let userData = {
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-    };
+    if (conversationStage >= questions.length) return;
 
-    const steps = [
-        { type: 'bot', text: 'Olá!Sou o assistente da AGM Advocacia. Qual é o seu nome?' },
-        { type: 'user_input' },
-        { type: 'bot', text: (data) => `Prazer, ${data.name}! Qual é o seu e-mail?` },
-        { type: 'user_input' },
-        { type: 'bot', text: (data) => `O obrigado! E qual é o seu telefone?` },
-        { type: 'user_input' },
-        {
-            type: 'bot',
-            text: 'Qual o assunto do seu contato?',
-            quickReplies: ['Consulta Jurídica', 'Orçamento', 'Caso Urgente', 'Outros']
-        },
-        { type: 'user_selecao' },
-        { type: 'bot', text: 'Agora, me conta brevemente sobre o que você precisa:' },
-        { type: 'user_input' },
-        {
-            type: 'bot',
-            text: (data) => `Pronto, ${data.name}!suas informações foram enviadas:\n\n📧 E-mail: ${data.email}\n📱 Telefone: ${data.phone}\n📌 Assunto: ${data.subject}\n💬 Mensagem: ${data.message}\n\nEm breve entraremos em contato. O obrigado! 😊`,
-            final: true
-        }
-    ];
+    // Adicionar mensagem do usuário
+    addMessage(message, 'user');
+    userInput.value = '';
 
-    function addMessage(sender, text) {
-        const messageDiv = document.createElement('div');
-        messageDiv.classList.add('message');
-        messageDiv.classList.add(sender === 'bot' ? 'bot-me' : 'user-me');
-        messageDiv.textContent = text;
-        decryptMessages.appendChild(messageDiv);
-        chatMessages.scrollTop = chatStories.scrollHeight;
+    // Processar resposta do bot
+    setTimeout(() => {
+        processUserResponse(message);
+    }, 1000);
+}
+
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
     }
+}
 
-    function showQuickReplies(options) {
-        quickRepliesContainer.innerHTML = '';
-        options.forEach(option => {
-            const button = document.createElement('button');
-            button.classList.add('quick-reply-btn');
-            button.textContent = option;
-            button.onclick = () => {
-                handleUsuarioResponse(response);
-                quickRepliesContainer.innerHTML = ''; // Limpa após seleção
-            };
-            quickRepliesContainer.appendChild(button);
-        });
-    }
+function addMessage(content, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}-message`;
 
-    function hideInput() {
-        inputArea.style.display = 'none';
-    }
+    const avatar = sender === 'bot' ? 'A' : 'V';
+    const senderName = sender === 'bot' ? 'Assistente' : 'Você';
+    const avatarClass = sender === 'bot' ? 'bot-avatar' : 'user-avatar';
 
-    function showInput() {
-        inputArea.style.display = 'flex';
-        userInput.value = '';
-        userInput.focus();
-    }
+    messageDiv.innerHTML = `
+                <div class="message-header">
+                    <div class="avatar ${avatarClass}">${avatar}</div>
+                    <strong>${senderName}</strong>
+                </div>
+                <div class="message-content">${content}</div>
+            `;
 
-    function processStep() {
-        const step = steps[currentStep];
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
 
-        if (step.type === 'bot') {
-            let messageText = step.text;
-            if (typeof step.text === 'function') {
-                messageText = step.text(userData);
-            }
-            addMessage('bot', messageText);
+function processUserResponse(response) {
+    // Armazenar a resposta do usuário
+    userData[Object.keys(userData).length] = response;
 
-            if (step.quickReplies) {
-                showQuickReplies(step.quickReplies);
-            }
-
-            if (step.final) {
-                hideInput();
-                return; // Finaliza o influxo
-            }
-
-            currentStep++;
-            // Não chama processStep novamente aqui para steps 'bot' sem interação imediata
-            // A próxima chamada virá de handleUsuarioResponse
-        }
-        else if (step.type === 'user_input' || step.type === 'user_selecao') {
-            showInput();
-        }
-    }
-
-    function handleUsuarioResponse(response) {
-        const step = steps[currentStep - 1]; // O step atual é o próximo, então pegamos o anterior
-
-        // Armazena a resposta do usuário nos dados
-        if (currentStep === 1) { // Nome
-            userData.name = response;
-        } else if (currentStep === 3) { // Email
+    switch (conversationStage) {
+        case 0:
+            userData.nome = response;
+            addMessage(botResponses[0].replace('{nome}', response), 'bot');
+            break;
+        case 1:
             userData.email = response;
-        } else if (currentStep === 5) { // Telefone
-            userData.phone = response;
-        } else if (currentStep === 7) { // Assunto
-            userData.subject = response;
-        } else if (currentStep === 9) { // Mensagem
-            userData.message = response;
-        }
+            addMessage(botResponses[1], 'bot');
+            break;
+        case 2:
+            userData.telefone = response;
+            addMessage(botResponses[2], 'bot');
+            break;
+        case 3:
+            userData.tipo = response;
+            addMessage(botResponses[3], 'bot');
+            break;
+        case 4:
+            userData.mensagem = response;
+            addMessage(botResponses[4], 'bot');
 
-        // Adiciona a mensagem do usuário ao chat
-        addMessage('user', response);
-
-        // Avança para o próximo passo e processa
-        currentStep++;
-        processStep();
+            // Mostrar resumo dos dados
+            setTimeout(() => {
+                showDataSummary();
+            }, 1500);
+            return;
     }
 
-    sendButton.addEventListener('click', () => {
-        const message = userInput.value.trim();
-        if (message) {
-            handleUsuarioResponse(message);
-        }
-    });
+    conversationStage++;
 
-    userInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendButton.click();
-        }
-    });
+    if (conversationStage < questions.length) {
+        setTimeout(() => {
+            addMessage(questions[conversationStage], 'bot');
+        }, 1500);
+    }
+}
 
-    // Inicia o chat
-    processStep();
+function showDataSummary() {
+    const summary = `
+                <strong>Resumo dos dados coletados:</strong><br>
+                Nome: ${userData.nome}<br>
+                E-mail: ${userData.email}<br>
+                Telefone: ${userData.telefone}<br>
+                Tipo: ${userData.tipo}<br>
+                Mensagem: ${userData.mensagem}<br><br>
+                Está tudo correto? (Sim/Não)
+            `;
+
+    addMessage(summary, 'bot');
+    isConfirmationStage = true; // Etapa de confirmação
+}
+
+function handleConfirmation(response) {
+    const resposta = response.toLowerCase().trim();
+
+    // Verifica se a resposta é válida
+    if (resposta === 'sim' || resposta === 's' || resposta === 'sim, está correto' || resposta === 'ok' || resposta === 'confirmar') {
+        // Enviar os dados
+        sendUserDataToServer();
+
+        // Mensagem de confirmação no chat
+        addMessage("Sua solicitação foi enviada com sucesso! Em breve entraremos em contato.", 'bot');
+
+        // Desabilitar entrada após envio
+        userInput.disabled = true;
+        userInput.placeholder = "Conversa encerrada";
+
+        // Mostrar mensagem final
+        setTimeout(() => {
+            addMessage("Obrigado por entrar em contato conosco!", 'bot');
+        }, 2000);
+    } else if (resposta === 'não' || resposta === 'nao' || resposta === 'n' || resposta === 'não, está incorreto' || resposta === 'corrigir' || resposta === 'reiniciar') {
+        // Reiniciar o formulário
+        addMessage("Vamos recomeçar então. Por favor, informe novamente seus dados.", 'bot');
+
+        // Resetar variáveis
+        conversationStage = 0;
+        userData = {};
+        isConfirmationStage = false;
+
+        // Iniciar novamente
+        setTimeout(() => {
+            addMessage(questions[0], 'bot');
+        }, 1500);
+    } else {
+        // Respostas inválidas
+        addMessage("Por favor, responda com 'Sim' ou 'Não'.", 'bot');
+        setTimeout(() => {
+            addMessage("Está tudo correto? (Sim/Não)", 'bot');
+        }, 1000);
+    }
+}
+
+function sendUserDataToServer() {
+    // Simulação de envio de dados para servidor
+    console.log("Dados enviados:", userData);
+}
+
+// Iniciar conversa
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        addMessage(questions[0], 'bot');
+    }, 1000);
 });
