@@ -58,7 +58,7 @@ body {
     z-index: -1;
 }
 
-header {
+.header-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,15 +131,8 @@ main {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .bot-message {
@@ -184,6 +177,7 @@ main {
 .message-content {
     font-size: 1rem;
     line-height: 1.5;
+    white-space: pre-line; /* This ensures proper line breaks */
 }
 
 .chat-input {
@@ -290,21 +284,21 @@ footer {
     .form-grid {
         grid-template-columns: 1fr;
     }
-
+    
     .form-group.full-width {
         grid-column: span 1;
     }
-
+    
     .footer-info {
         flex-direction: column;
         gap: 15px;
         text-align: center;
     }
-
+    
     .message {
         max-width: 90%;
     }
-
+    
     .chat-container {
         height: 60vh;
     }

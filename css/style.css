@@ -412,12 +412,12 @@ footer {
     z-index: 1;
 }
 
-.form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group select:focus + label,
-.form-group select:not([value=""]) + label,
-.form-group textarea:focus + label,
-.form-group textarea:not(:placeholder-shown) + label {
+.form-group input:focus+label,
+.form-group input:not(:placeholder-shown)+label,
+.form-group select:focus+label,
+.form-group select:not([value=""])+label,
+.form-group textarea:focus+label,
+.form-group textarea:not(:placeholder-shown)+label {
     top: -10px;
     left: 15px;
     transform: translateY(0);
@@ -533,4 +533,34 @@ footer {
     .dev-info p {
         font-size: 0.8rem;
     }
+}
+
+/* Estilo para todos os links no site */
+a {
+    color: var(--cor-texto-claro);
+    /* Cor do texto principal (branco/claro) */
+    text-decoration: none;
+    /* Remove o sublinhado padrão */
+    position: relative;
+    /* Permite posicionar o elemento filho */
+    transition: all 0.3s ease;
+    /* Animação suave para o hover */
+}
+
+/* Efeito de hover para os links - borda inferior */
+a:hover::after {
+    content: '';
+    /* Cria um elemento genérico */
+    position: absolute;
+    /* Posiciona absolutamente */
+    left: 0;
+    /* Alinha à esquerda */
+    bottom: -2px;
+    /* Posiciona abaixo do texto */
+    width: 100%;
+    /* Largura total do link */
+    height: 2px;
+    /* Altura da borda */
+    background-color: #4a90e2;
+    /* Cor da borda */
 }

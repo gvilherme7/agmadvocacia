@@ -1,54 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AGM Advocacia - Chatbot</title>
     <link rel="stylesheet" href="css/chatbot.css">
 </head>
-
 <body>
     <div class="body-bg"></div>
-
+    
     <header>
         <div class="header-logo">
             <img src="images/logo_footer.svg" alt="Logo AGM Advocacia">
         </div>
     </header>
-
+    
     <main>
         <div class="chat-container">
             <div class="chat-header">
                 <h1>Assistente Virtual</h1>
                 <p>Como posso ajudar você hoje?</p>
             </div>
-
+            
             <div class="chat-messages" id="chatMessages">
-                <div class="message bot-message">
-                    <div class="message-header">
-                        <div class="avatar bot-avatar">A</div>
-                        <strong>Assistente</strong>
-                    </div>
-                    <div class="message-content">
-                        Olá! Sou o assistente virtual da AGM Advocacia. Antes de prosseguirmos, é importante te avisar
-                        que vou solicitar alguns dados pessoais para que nossa equipe possa entrar em contato e melhor
-                        te atender. Todos os dados fornecidos serão tratados com total confidencialidade e em
-                        conformidade com a LGPD. Vamos começar?
-                    </div>
-                </div>
+                <!-- Mensagens serão adicionadas aqui via JavaScript -->
             </div>
-
+            
             <div class="chat-input">
                 <div class="input-group">
-                    <input type="text" id="userInput" placeholder="Digite sua resposta..."
-                        onkeypress="handleKeyPress(event)">
+                    <input type="text" id="userInput" placeholder="Digite o número da opção..." onkeypress="handleKeyPress(event)">
                     <button onclick="sendMessage()">Enviar</button>
                 </div>
             </div>
         </div>
     </main>
-
+    
     <footer>
         <div class="footer-info">
             <div class="oab-info">
@@ -59,14 +45,12 @@
                 <img src="images/logo_footer.svg" alt="Logo AGM Advocacia">
             </div>
             <div class="dev-info">
-                <p>Desenvolvido por <a href="https://www.linkedin.com/in/guilherme-mendes-de-oliveira-153b53206/  "
-                        target="_blank">Guilherme M. de Oliveira</a></p>
+                <p>Desenvolvido por <a href="https://www.linkedin.com/in/guilherme-mendes-de-oliveira-153b53206/  " target="_blank">Guilherme M. de Oliveira</a></p>
                 <p><a href="https://github.com/gvilherme7  " target="_blank">@gvilherme7</a> • 2025</p>
             </div>
         </div>
     </footer>
-
-    <script src="js/chatbot.js" defer></script>
+    
+    <script src="js/chatbot.js"></script>
 </body>
-
 </html>
