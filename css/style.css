@@ -15,41 +15,9 @@
 }
 
 @font-face {
-    font-family: 'ChampagneAndLimousines';
-    src: url('../fonts/champagne-limousines-italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ChampagneAndLimousines';
-    src: url('../fonts/champagne-limousines-bold-italic.ttf') format('truetype');
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
     font-family: 'Nourd';
     src: url('../fonts/nourd_regular.ttf') format('truetype');
     font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Nourd';
-    src: url('../fonts/nourd_medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Nourd';
-    src: url('../fonts/nourd_bold.ttf') format('truetype');
-    font-weight: bold;
     font-style: normal;
     font-display: swap;
 }
@@ -214,61 +182,6 @@ main {
     bottom: 0;
 }
 
-footer {
-    padding: 0.5rem 0;
-    background-color: rgba(38, 39, 39, 0.3);
-    color: var(--cor-texto-claro);
-    font-family: 'Nourd', sans-serif;
-    font-size: 0.85rem;
-    position: relative;
-    z-index: 10;
-    text-align: center;
-}
-
-.footer-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 80%;
-    margin: 0 auto 1rem;
-    padding: 0 1rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.oab-info p,
-.dev-info p {
-    margin: 0.2rem 0;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-}
-
-.oab-info p:hover,
-.dev-info p:hover {
-    opacity: 1;
-}
-
-.dev-info a {
-    color: var(--cor-texto-claro);
-    text-decoration: underline;
-    opacity: 0.9;
-}
-
-.dev-info a:hover {
-    opacity: 1;
-}
-
-.footer-logo img {
-    height: 50px;
-    opacity: 0.9;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.footer-logo img:hover {
-    opacity: 1;
-    transform: scale(1.05);
-}
-
 .card-expanded-content {
     position: absolute;
     bottom: -600px;
@@ -348,135 +261,104 @@ footer {
     opacity: 0.9;
 }
 
-.contact-form-container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* Estilo para links */
+a {
+    color: var(--cor-texto-claro); /* Cor do texto principal (branco/claro) */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    transition: all 0.3s ease; /* Animação suave para o hover */
 }
 
-.form-title {
-    font-family: 'ChampagneAndLimousines', serif;
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+/* Efeito de hover para os links */
+a:hover {
+    color: #4a90e2; /* Cor do botão primário (azul claro) */
+    text-decoration: underline; /* Adiciona um sublinhado sutil */
+    text-decoration-color: #4a90e2; /* Cor do sublinhado */
+}
+
+/* Estilo para o link da logo no cabeçalho */
+.header-logo a {
+    display: inline-block; /* Permite aplicar transformações */
+    transition: all 0.3s ease; /* Animação suave */
+    border-radius: 8px; /* Bordas arredondadas para o destaque */
+    padding: 5px; /* Pequeno espaço ao redor da logo */
+}
+
+/* Efeito hover para o link da logo */
+.header-logo a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo sutil ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+}
+
+/* Mantém o efeito hover existente para a imagem */
+.header-logo img {
+    height: 80px;
+    width: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.header-logo a:hover img {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+footer {
+    padding: 0.5rem 0;
+    background-color: rgba(38, 39, 39, 0.3);
     color: var(--cor-texto-claro);
+    font-family: 'Nourd', sans-serif;
+    font-size: 0.85rem;
     text-align: center;
+    position: relative;
+    z-index: 10;
 }
 
-.contact-form {
+.footer-info {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 80%;
+    margin: 0 auto 1rem;
+    padding: 0 1rem;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
-.form-group {
-    position: relative;
-    width: 100%;
-    margin-top: 1.5rem;
+.oab-info p,
+.dev-info p {
+    margin: 0.2rem 0;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(245, 243, 242, 0.3);
-    border-radius: 6px;
+.oab-info p:hover,
+.dev-info p:hover {
+    opacity: 1;
+}
+
+.dev-info a {
     color: var(--cor-texto-claro);
-    font-family: 'Nourd', sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    outline: none;
+    text-decoration: underline;
+    opacity: 0.9;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: var(--cor-texto-claro);
-    background-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 0 2px rgba(245, 243, 242, 0.2);
+.dev-info a:hover {
+    opacity: 1;
 }
 
-.form-group label {
-    position: absolute;
-    top: -10px;
-    left: 15px;
-    background-color: rgba(27, 38, 52, 0.95);
-    padding: 0 5px;
-    font-family: 'Nourd', sans-serif;
-    font-size: 0.85rem;
-    color: var(--cor-texto-claro);
-    pointer-events: none;
-    transition: all 0.3s ease;
-    z-index: 1;
+.footer-logo img {
+    height: 50px;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.form-group input:focus+label,
-.form-group input:not(:placeholder-shown)+label,
-.form-group select:focus+label,
-.form-group select:not([value=""])+label,
-.form-group textarea:focus+label,
-.form-group textarea:not(:placeholder-shown)+label {
-    top: -10px;
-    left: 15px;
-    transform: translateY(0);
-    font-size: 0.85rem;
-    color: var(--cor-texto-claro);
-    background-color: rgba(27, 38, 52, 0.95);
-    padding: 0 5px;
-    border-radius: 3px;
-    pointer-events: none;
-    z-index: 1;
+.footer-logo img:hover {
+    opacity: 1;
+    transform: scale(1.05);
 }
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.submit-btn {
-    padding: 1rem 2rem;
-    background-color: var(--cor-texto-claro);
-    color: var(--cor-fundo-escuro);
-    border: none;
-    border-radius: 6px;
-    font-family: 'ChampagneAndLimousines', serif;
-    font-size: 1.2rem;
-    font-weight: normal;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    align-self: center;
-    margin-top: 1rem;
-}
-
-.submit-btn:hover {
-    background-color: #e0dedc;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.form-group select {
-    appearance: none;
-    background-image: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23f5f3f2' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 16px;
-}
-
-.form-group select option {
-    background-color: rgba(27, 38, 52, 0.95);
-    color: var(--cor-texto-claro);
-    font-family: 'Nourd', sans-serif;
-    font-size: 1rem;
-    padding: 0.5rem;
-}
-
-.form-group select:focus {
-    border-color: var(--cor-texto-claro);
-    box-shadow: 0 0 0 2px rgba(245, 243, 242, 0.2);
-}
-
+/* Responsividade para mobile */
 @media (max-width: 768px) {
     .card {
         width: 90%;
@@ -507,22 +389,6 @@ footer {
         padding: 1rem;
     }
 
-    .form-title {
-        font-size: 1.5rem;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        font-size: 0.9rem;
-        padding: 0.8rem;
-    }
-
-    .submit-btn {
-        font-size: 1rem;
-        padding: 0.8rem 1.5rem;
-    }
-
     .footer-info {
         flex-direction: column;
         gap: 0.8rem;
@@ -533,34 +399,4 @@ footer {
     .dev-info p {
         font-size: 0.8rem;
     }
-}
-
-/* Estilo para todos os links no site */
-a {
-    color: var(--cor-texto-claro);
-    /* Cor do texto principal (branco/claro) */
-    text-decoration: none;
-    /* Remove o sublinhado padrão */
-    position: relative;
-    /* Permite posicionar o elemento filho */
-    transition: all 0.3s ease;
-    /* Animação suave para o hover */
-}
-
-/* Efeito de hover para os links - borda inferior */
-a:hover::after {
-    content: '';
-    /* Cria um elemento genérico */
-    position: absolute;
-    /* Posiciona absolutamente */
-    left: 0;
-    /* Alinha à esquerda */
-    bottom: -2px;
-    /* Posiciona abaixo do texto */
-    width: 100%;
-    /* Largura total do link */
-    height: 2px;
-    /* Altura da borda */
-    background-color: #4a90e2;
-    /* Cor da borda */
 }

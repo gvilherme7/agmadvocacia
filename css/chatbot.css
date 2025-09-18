@@ -131,8 +131,15 @@ main {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .bot-message {
@@ -177,7 +184,8 @@ main {
 .message-content {
     font-size: 1rem;
     line-height: 1.5;
-    white-space: pre-line; /* This ensures proper line breaks */
+    white-space: pre-line;
+    /* This ensures proper line breaks */
 }
 
 .chat-input {
@@ -284,22 +292,56 @@ footer {
     .form-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .form-group.full-width {
         grid-column: span 1;
     }
-    
+
     .footer-info {
         flex-direction: column;
         gap: 15px;
         text-align: center;
     }
-    
+
     .message {
         max-width: 90%;
     }
-    
+
     .chat-container {
         height: 60vh;
     }
+}
+
+.header-logo a {
+    display: inline-block;
+    /* Permite aplicar transformações */
+    transition: all 0.3s ease;
+    /* Animação suave */
+    border-radius: 8px;
+    /* Bordas arredondadas para o destaque */
+    padding: 5px;
+    /* Pequeno espaço ao redor da logo */
+}
+
+/* Efeito hover para o link da logo */
+.header-logo a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Fundo sutil ao passar o mouse */
+    transform: scale(1.05);
+    /* Leve aumento */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    /* Sombra sutil */
+}
+
+/* Mantém o efeito hover existente para a imagem */
+.header-logo img {
+    height: 80px;
+    width: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.header-logo a:hover img {
+    opacity: 1;
+    transform: scale(1.05);
 }

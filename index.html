@@ -1,142 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AGM Advocacia</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="images/logo2_vetor_branco.svg" type="image/svg+xml">
 </head>
-
 <body>
     <div class="body-bg"></div>
-
+    
     <header>
         <div class="header-logo">
-            <img src="images/logo_footer.svg" alt="Logo AGM Advocacia">
+            <a href="index.html">
+                <img src="images/logo_footer.svg" alt="Logo AGM Advocacia">
+            </a>
         </div>
     </header>
-
+    
     <main>
-        <div class="card" onclick="toggleCard(this)">
-            <div class="card-bg" style="background-image: url('images/3.png');"></div>
-            <div class="card-content">
-                <h2 class="card-title">Contato</h2>
-            </div>
-            <div class="card-expanded-content">
-                <div class="expanded-left">
-                    <div class="image-card" style="background-image: url('images/thumbs/3.png');"></div>
+        <div class="card-container">
+            <!-- Card 1 -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-bg" style="background-image: url('images/3.png');"></div>
+                <div class="card-content">
+                    <h2 class="card-title">Sou empresa</h2>
                 </div>
-                <div class="expanded-right">
-                    <div class="child-card">
-                        <h3>Telefone</h3>
-                        <p>(11) 99999-9999</p>
+                <div class="card-expanded-content">
+                    <div class="expanded-left">
+                        <div class="image-card" style="background-image: url('images/thumbs/3.png');"></div>
                     </div>
-                    <div class="child-card">
-                        <h3>Endereço</h3>
-                        <p>Rua Exemplo, 123 - São Paulo</p>
-                    </div>
-                    <div class="child-card">
-                        <h3>Horário</h3>
-                        <p>Segunda a Sexta, 9h-18h</p>
+                    <div class="expanded-right">
+                        <div class="child-card">
+                            <h3>Quero fazer adequação à LGPD</h3>
+                            <p><a href="chatbot.html?tipo=empresa&servico=adequacao">Clique aqui para iniciar</a></p>
+                        </div>
+                        <div class="child-card">
+                            <h3>Quero agendar um treinamento na minha empresa</h3>
+                            <p><a href="chatbot.html?tipo=empresa&servico=treinamento_corp">Clique aqui para iniciar</a></p>
+                        </div>
+                        <div class="child-card">
+                            <h3>Quero uma consultoria</h3>
+                            <p><a href="chatbot.html?tipo=empresa&servico=politicas">Clique aqui para iniciar</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card" onclick="toggleCard(this)">
-            <div class="card-bg" style="background-image: url('images/3.png');"></div>
-            <div class="card-content">
-                <h2 class="card-title">Sou empresa</h2>
-            </div>
-            <div class="card-expanded-content">
-                <div class="expanded-left">
-                    <div class="image-card" style="background-image: url('images/thumbs/3.png');"></div>
+            <!-- Card 2 -->
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-bg" style="background-image: url('images/3.png');"></div>
+                <div class="card-content">
+                    <h2 class="card-title">Sou cliente</h2>
                 </div>
-                <div class="expanded-right">
-                    <div class="child-card">
-                        <h3><a href="chatbot.html?tipo=empresa&servico=adequacao">Quero Adequação completa à LGPD</a></h3>
+                <div class="card-expanded-content">
+                    <div class="expanded-left">
+                        <div class="image-card" style="background-image: url('images/thumbs/3.png');"></div>
                     </div>
-                    <div class="child-card">
-                        <h3><a href="chatbot.html?tipo=empresa&servico=treinamento_corp">Quero agendar um treinamento na minha empresa</a></h3>
-                    </div>
-                    <div class="child-card">
-                        <h3><a href="chatbot.html?tipo=empresa&servico=politicas">Quero uma consultoria</a></h3>
+                    <div class="expanded-right">
+                        <div class="child-card">
+                            <h3>Quero fazer adequação à LGPD</h3>
+                            <p><a href="chatbot.html?tipo=cliente&servico=consultoria">Clique aqui para iniciar</a></p>
+                        </div>
+                        <div class="child-card">
+                            <h3>Quero agendar um treinamento na minha empresa</h3>
+                            <p><a href="chatbot.html?tipo=cliente&servico=treinamento">Clique aqui para iniciar</a></p>
+                        </div>
+                        <div class="child-card">
+                            <h3>Quero uma consultoria</h3>
+                            <p><a href="chatbot.html?tipo=cliente&servico=revisao">Clique aqui para iniciar</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card" onclick="toggleCard(this)">
-            <div class="card-bg" style="background-image: url('images/3.png');"></div>
-            <div class="card-content">
-                <h2 class="card-title">Sou cliente</h2>
-            </div>
-            <div class="card-expanded-content">
-                <div class="expanded-left">
-                    <div class="image-card" style="background-image: url('images/thumbs/3.png');"></div>
+            <div class="card" onclick="toggleCard(this)">
+                <div class="card-bg" style="background-image: url('images/3.png');"></div>
+                <div class="card-content">
+                    <h2 class="card-title">Linkedin</h2>
                 </div>
-                <div class="expanded-right">
-                    <div class="child-card">
-                        <h3><a href="chatbot.html?tipo=cliente&servico=consultoria">Quero Consultoria sobre LGPD</a></h3>
+                <div class="card-expanded-content">
+                    <div class="expanded-left">
+                        <div class="image-card" style="background-image: url('images/thumbs/3.png');"></div>
                     </div>
-                    <div class="child-card">
-                        <h3><a href="chatbot.html?tipo=cliente&servico=treinamento">Quero agendar um treinamento na minha empresa</a></h3>
-                    </div>
-                    <div class="child-card">
-                        <h3><a href="chatbot.html?tipo=cliente&servico=consultoria">Quero uma consultoria</a></h3>
+                    <div class="expanded-right">
+                        <div class="child-card">
+                            <h3>Placeholder</h3>
+                            <p><a href="chatbot.html?tipo=cliente&servico=consultoria">Clique aqui para saber mais</a></p>
+                        </div>
+                        <div class="child-card">
+                            <h3>Placeholder</h3>
+                            <p><a href="chatbot.html?tipo=cliente&servico=treinamento">Clique aqui para saber mais</a></p>
+                        </div>
+                        <div class="child-card">
+                            <h3>Placeholder</h3>
+                            <p><a href="chatbot.html?tipo=cliente&servico=revisao">Clique aqui para saber mais</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card" onclick="toggleCard(this)">
-            <div class="card-bg" style="background-image: url('images/3.png');"></div>
-            <div class="card-content">
-                <h2 class="card-title">Linkedin</h2>
-            </div>
-            <div class="card-expanded-content">
-                <div class="expanded-left">
-                    <div class="image-card" style="background-image: url('images/thumbs/3.png');"></div>
-                </div>
-                <div class="expanded-right">
-                    <div class="child-card">
-                        <h3>Artigos Técnicos</h3>
-                        <p>Análises jurídicas profundas</p>
-                    </div>
-                    <div class="child-card">
-                        <h3>Networking</h3>
-                        <p>Conecte-se com profissionais</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card" onclick="toggleCard(this)">
-            <div class="card-bg" style="background-image: url('images/3.png');"></div>
-            <div class="card-content">
-                <h2 class="card-title">E-mail</h2>
-            </div>
-            <div class="card-expanded-content">
-                <div class="expanded-left">
-                    <div class="image-card" style="background-image: url('images/thumbs/3.png');"></div>
-                </div>
-                <div class="expanded-right">
-                    <div class="child-card">
-                        <h3>Geral</h3>
-                        <p>contato@agmadvocacia.com.br</p>
-                    </div>
-                    <div class="child-card">
-                        <h3>Urgências</h3>
-                        <p>urgente@agmadvocacia.com.br</p>
-                    </div>
-                    <div class="child-card">
-                        <h3>Marketing</h3>
-                        <p>marketing@agmadvocacia.com.br</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -158,5 +120,4 @@
 
     <script src="js/script.js" defer></script>
 </body>
-
 </html>
