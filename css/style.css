@@ -35,16 +35,22 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Nourd', sans-serif;
     background-color: #1b2634;
     color: var(--cor-texto-claro);
-    overflow-x: hidden;
+    min-height: 100%;
     position: relative;
-    min-height: 100vh;
+    padding-bottom: 120px; /* Espaço para o footer */
 }
 
-.body-bg {
+/* Fundo como pseudo-elemento para melhor performance */
+body::before {
+    content: '';
     position: fixed;
     top: 0;
     left: 0;
@@ -55,6 +61,11 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
+}
+
+/* Remover o body-bg antigo */
+.body-bg {
+    display: none;
 }
 
 .header-logo {
@@ -85,6 +96,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .card-container {
@@ -164,26 +176,8 @@ main {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-.card-details {
-    position: absolute;
-    bottom: -300px;
-    left: 0;
-    width: 100%;
-    padding: 2rem;
-    background-color: rgba(27, 38, 52, 0.95);
-    color: var(--cor-texto-claro);
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    transition: bottom 0.6s ease;
-    z-index: 3;
-}
-
-.card.expanded .card-details {
-    bottom: 0;
-}
-
 .card-expanded-content {
-    position: absolute;
+    position: relative;
     bottom: -600px;
     left: 0;
     width: 100%;
@@ -263,39 +257,29 @@ main {
 
 /* Estilo para links */
 a {
-    color: var(--cor-texto-claro); /* Cor do texto principal (branco/claro) */
-    text-decoration: none; /* Remove o sublinhado padrão */
-    transition: all 0.3s ease; /* Animação suave para o hover */
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-/* Efeito de hover para os links */
 a:hover {
-    color: #4a90e2; /* Cor do botão primário (azul claro) */
-    text-decoration: underline; /* Adiciona um sublinhado sutil */
-    text-decoration-color: #4a90e2; /* Cor do sublinhado */
+    color: #4a90e2;
+    text-decoration: underline;
+    text-decoration-color: #4a90e2;
 }
 
 /* Estilo para o link da logo no cabeçalho */
 .header-logo a {
-    display: inline-block; /* Permite aplicar transformações */
-    transition: all 0.3s ease; /* Animação suave */
-    border-radius: 8px; /* Bordas arredondadas para o destaque */
-    padding: 5px; /* Pequeno espaço ao redor da logo */
+    display: inline-block;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    padding: 5px;
 }
 
-/* Efeito hover para o link da logo */
 .header-logo a:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Fundo sutil ao passar o mouse */
-    transform: scale(1.05); /* Leve aumento */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra sutil */
-}
-
-/* Mantém o efeito hover existente para a imagem */
-.header-logo img {
-    height: 80px;
-    width: auto;
-    opacity: 0.9;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .header-logo a:hover img {
@@ -304,14 +288,15 @@ a:hover {
 }
 
 footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     padding: 0.5rem 0;
     background-color: rgba(38, 39, 39, 0.3);
     color: var(--cor-texto-claro);
     font-family: 'Nourd', sans-serif;
     font-size: 0.85rem;
     text-align: center;
-    position: relative;
-    z-index: 10;
 }
 
 .footer-info {
@@ -360,6 +345,10 @@ footer {
 
 /* Responsividade para mobile */
 @media (max-width: 768px) {
+    body {
+        padding-bottom: 200px; /* Mais espaço no mobile */
+    }
+    
     .card {
         width: 90%;
         height: 350px;
@@ -398,5 +387,13 @@ footer {
     .oab-info p,
     .dev-info p {
         font-size: 0.8rem;
+    }
+    
+    .card-title {
+        font-size: 1.8rem;
+    }
+    
+    .child-card h3 {
+        font-size: 1.3rem;
     }
 }
